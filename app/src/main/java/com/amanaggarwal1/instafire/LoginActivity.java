@@ -27,9 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        
-        emailET = findViewById(R.id.EmailET);
-        passwordET = findViewById(R.id.PasswordET);
+
+        emailET = findViewById(R.id.login_email);
+        passwordET = findViewById(R.id.login_password);
 
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null)
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void attemptLogin(View view){
+    public void signInExistingUser(View view){
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    public void signUp(View view) {
+    public void registerNewUser(View view) {
 
     }
 }
