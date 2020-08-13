@@ -3,7 +3,6 @@ package com.amanaggarwal1.instafire;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.solver.widgets.Snapshot;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.amanaggarwal1.instafire.models.Post;
+import com.amanaggarwal1.instafire.models.User;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Document;
+import java.util.List;
 
 public class PostsActivity extends AppCompatActivity {
 
@@ -33,7 +32,26 @@ public class PostsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_posts);
 
         db = FirebaseFirestore.getInstance();
-        db.collection("users")
+
+        CollectionReference pr = db.collection("users");
+        pr.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error != null || value == null){
+                    Log.d("LOGCAT", "Error in getting data");
+                    return;
+                }
+
+                List<User> userList = value.toObjects(User.class);
+
+                for(User user : userList){
+                    Log.d("LOGCAT", "to objects,  USERNAME = " + user.username + " AGE = " + user.age);
+                }
+            }
+        });
+
+        /*
+        db.collection("posts")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -47,6 +65,8 @@ public class PostsActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+         */
     }
 
     @Override
