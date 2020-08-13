@@ -33,7 +33,7 @@ public class PostsActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        CollectionReference pr = db.collection("users");
+        CollectionReference pr = db.collection("posts");
         pr.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -42,11 +42,10 @@ public class PostsActivity extends AppCompatActivity {
                     return;
                 }
 
-                List<User> userList = value.toObjects(User.class);
+                List<Post> postList = value.toObjects(Post.class);
 
-                for(User user : userList){
-                    Log.d("LOGCAT", "to objects,  USERNAME = " + user.username + " AGE = " + user.age);
-                }
+                for(Post post : postList){
+                    Log.d("LOGCAT", "to objects,  desc = " + post.description + " time = " + post.creation_time_ms + " url = " + post.image_url + " username = " + post.user.username + " age = " + post.user.age );                }
             }
         });
 
