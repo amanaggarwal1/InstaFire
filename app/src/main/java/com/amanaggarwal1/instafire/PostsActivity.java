@@ -25,26 +25,50 @@ import java.util.List;
 
 public class PostsActivity extends AppCompatActivity {
 
-    FirebaseFirestore db;
-    MyAdapter adapter;
+    private FirebaseFirestore db;
+    private PostsAdapter adapter;
+    private  RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posts);
 
-        db = FirebaseFirestore.getInstance();
+        setUpAdapter();
+        fetchPostsFromFireStore();
+    }
 
-        RecyclerView recyclerView = findViewById(R.id.postsRV);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_posts, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+         if(item.getItemId() == R.id.menu_profile){
+             Intent intent = new Intent(this, ProfileActivity.class);
+             startActivity(intent);
+         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setUpAdapter(){
+        recyclerView = findViewById(R.id.postsRV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        adapter = new MyAdapter(this, new ArrayList<Post>());
+        adapter = new PostsAdapter(this, new ArrayList<Post>());
         recyclerView.setAdapter(adapter);
+    }
 
+    private void fetchPostsFromFireStore() {
+        db = FirebaseFirestore.getInstance();
         Query postsReference = db
                 .collection("posts")
                 .limit(20)
                 .orderBy("creation_time_ms", Query.Direction.DESCENDING);
+
         postsReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -77,21 +101,5 @@ public class PostsActivity extends AppCompatActivity {
                 });
 
          */
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_posts, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-         if(item.getItemId() == R.id.menu_profile){
-             Intent intent = new Intent(this, ProfileActivity.class);
-             startActivity(intent);
-         }
-        return super.onOptionsItemSelected(item);
     }
 }
