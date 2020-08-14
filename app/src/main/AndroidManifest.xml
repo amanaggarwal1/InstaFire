@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".home.HomeActivity"/>
+        <activity android:name=".search.SearchActivity"/>
+        <activity android:name=".share.ShareActivity"/>
+        <activity android:name=".updates.UpdatesActivity"/>
+        <activity android:name=".profile.ProfileActivity"/>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PostsActivity" />
         <activity
