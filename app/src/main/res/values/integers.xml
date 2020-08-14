@@ -3,4 +3,9 @@
 
     <integer name="login">100</integer>
     <integer name="register_form_finished">200</integer>
+    <integer name="ACTIVITY_NUMBER_HOME">0</integer>
+    <integer name="ACTIVITY_NUMBER_SEARCH">1</integer>
+    <integer name="ACTIVITY_NUMBER_SHARE">2</integer>
+    <integer name="ACTIVITY_NUMBER_UPDATES">3</integer>
+    <integer name="ACTIVITY_NUMBER_PROFILE">4</integer>
 </resources>

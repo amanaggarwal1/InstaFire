@@ -14,6 +14,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.amanaggarwal1.instafire.models.Post;
+import com.amanaggarwal1.instafire.models.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -28,6 +33,7 @@ public class PostsActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private PostsAdapter adapter;
     private  RecyclerView recyclerView;
+    private User signedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,7 @@ public class PostsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
          if(item.getItemId() == R.id.menu_profile){
              Intent intent = new Intent(this, ProfileActivity.class);
+             intent.putExtra("USERNAME", signedInUser.username);
              startActivity(intent);
          }
         return super.onOptionsItemSelected(item);
@@ -64,10 +71,24 @@ public class PostsActivity extends AppCompatActivity {
 
     private void fetchPostsFromFireStore() {
         db = FirebaseFirestore.getInstance();
-        Query postsReference = db
-                .collection("posts")
-                .limit(20)
-                .orderBy("creation_time_ms", Query.Direction.DESCENDING);
+
+        getCurrentUser();
+
+        String username = getIntent().getStringExtra("USERNAME");
+        Query postsReference;
+        if(username == null) {
+            postsReference = db.collection("posts")
+                    .limit(20)
+                    .orderBy("creation_time_ms", Query.Direction.DESCENDING);
+        }else{
+            getSupportActionBar().setTitle(username);
+            postsReference = db.collection("posts")
+                    .limit(20)
+                    .orderBy("creation_time_ms", Query.Direction.DESCENDING)
+                    .whereEqualTo("user.username", username);
+        }
+
+
 
         postsReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -101,5 +122,25 @@ public class PostsActivity extends AppCompatActivity {
                 });
 
          */
+    }
+
+    private void getCurrentUser() {
+        db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        signedInUser = documentSnapshot.toObject(User.class);
+                        Log.d("LOGCAT", "user signed in = " + signedInUser.username);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("LOGCAT", "Something went wrong in fetching current user " + e.getMessage());
+            }
+        });
+
+
     }
 }
