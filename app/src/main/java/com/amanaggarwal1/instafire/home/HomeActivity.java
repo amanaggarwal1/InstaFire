@@ -43,5 +43,9 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_app_logo);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_messages);
     }
 }
