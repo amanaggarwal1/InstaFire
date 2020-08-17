@@ -1,4 +1,4 @@
-package com.amanaggarwal1.instafire.home;
+package com.amanaggarwal1.instafire.Utils;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -6,10 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.amanaggarwal1.instafire.R;
 import com.amanaggarwal1.instafire.Utils.BottomNavigationViewHelper;
+import com.amanaggarwal1.instafire.Utils.SectionsPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
