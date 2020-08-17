@@ -16,9 +16,6 @@ import com.google.android.material.tabs.TabLayout;
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
-    private BottomNavigationView bottomNavigationView;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: ");
 
-        bottomNavigationView = findViewById(R.id.bottom_nav_view_bar);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view_bar);
         BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView, BottomNavigationViewHelper.ACTIVITY_NUMBER_HOME);
 
         setupViewPager();
@@ -39,9 +36,9 @@ public class HomeActivity extends AppCompatActivity {
         adapter.addFragment(new HomeFragment());
         adapter.addFragment(new MessagesFragment());
 
-        viewPager = findViewById(R.id.container);
+        ViewPager viewPager = findViewById(R.id.container);
         viewPager.setAdapter(adapter);
-        tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);

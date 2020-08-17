@@ -1,5 +1,6 @@
 package com.amanaggarwal1.instafire.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
+        Toolbar toolbar = findViewById(R.id.profile_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("username");
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -39,7 +40,8 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.profile_menu :
-                        Log.d(TAG, "onMenuItemClick: " + item);
+                        Intent intent = new Intent(getApplicationContext(), AccountSettingsActivity.class);
+                        startActivity(intent);
                         return true;
                     default:
                         return false;
