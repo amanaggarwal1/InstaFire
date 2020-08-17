@@ -23,33 +23,43 @@ public class BottomNavigationViewHelper {
     public static final int ACTIVITY_NUMBER_PROFILE = 4;
 
 
-    public static void enableNavigation(final Context context, BottomNavigationView view, int ACTIVITY_NUMBER){
+    public static void enableNavigation(final Context context, BottomNavigationView view, final int ACTIVITY_NUMBER){
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_home:
                         //Index 0
+                        if(ACTIVITY_NUMBER == ACTIVITY_NUMBER_HOME)
+                            return true;
                         Intent intent0 = new Intent(context, HomeActivity.class);
                         context.startActivity(intent0);
                         return true;
                     case R.id.ic_search:
                         //Index 1
+                        if(ACTIVITY_NUMBER == ACTIVITY_NUMBER_SEARCH)
+                            return true;
                         Intent intent1 = new Intent(context, SearchActivity.class);
                         context.startActivity(intent1);
                         return true;
                     case R.id.ic_share:
                         //Index 2
+                        if(ACTIVITY_NUMBER == ACTIVITY_NUMBER_SHARE)
+                            return true;
                         Intent intent2 = new Intent(context, ShareActivity.class);
                         context.startActivity(intent2);
                         return true;
                     case R.id.ic_updates:
                         //Index 3
+                        if(ACTIVITY_NUMBER == ACTIVITY_NUMBER_UPDATES)
+                            return true;
                         Intent intent3 = new Intent(context, UpdatesActivity.class);
                         context.startActivity(intent3);
                         return true;
                     case R.id.ic_profile:
                         //Index 4
+                        if(ACTIVITY_NUMBER == ACTIVITY_NUMBER_PROFILE)
+                            return true;
                         Intent intent4 = new Intent(context, ProfileActivity.class);
                         context.startActivity(intent4);
                         return true;
