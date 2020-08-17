@@ -11,7 +11,7 @@
             android:id="@+id/account_settings_heading_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account Settings"
+            android:text="@string/account_settings"
             android:textSize="30dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 

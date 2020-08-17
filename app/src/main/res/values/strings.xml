@@ -21,4 +21,8 @@
     <string name="logcat">LOGCAT</string>
     <string name="error_short_password">Password too short</string>
     <string name="error_invalid_passwords">Passwords don\'t match</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="log_out">Log out</string>
+    <string name="options">Options</string>
+    <string name="account_settings">Account Settings</string>
 </resources>
