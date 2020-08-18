@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.amanaggarwal1.instafire.R;
 import com.amanaggarwal1.instafire.Utils.BottomNavigationViewHelper;
 import com.amanaggarwal1.instafire.Utils.UniversalImageLoader;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -42,7 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setupProfilePhoto() {
         String imageURL = "https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg";
-        UniversalImageLoader.setImage(imageURL, profilePhoto, progressBar, "");
+        //UniversalImageLoader.setImage(imageURL, profilePhoto, progressBar, "");
+        Glide.with(this).load(imageURL).into(profilePhoto);
     }
 
     private void setupToolbar(){

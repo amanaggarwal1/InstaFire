@@ -29,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view_bar);
         BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView, BottomNavigationViewHelper.ACTIVITY_NUMBER_HOME);
 
-        initiateImageLoader();
+        //initiateImageLoader();
         setupViewPager();
     }
 
