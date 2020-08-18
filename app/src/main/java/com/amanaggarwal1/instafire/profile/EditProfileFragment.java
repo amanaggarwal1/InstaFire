@@ -2,12 +2,14 @@ package com.amanaggarwal1.instafire.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.amanaggarwal1.instafire.R;
@@ -21,18 +23,39 @@ public class EditProfileFragment extends Fragment {
 
     private static final String TAG = "EditProfileFragment";
     private CircleImageView profilePhoto;
+    private androidx.appcompat.widget.Toolbar toolbar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         profilePhoto = view.findViewById(R.id.profile_photo);
+        toolbar = view.findViewById(R.id.profile_toolbar);
 
+        setupToolbar();
         initiateImageLoader();
         setProfilePhoto();
 
         return view;
 
+    }
+
+    private void setupToolbar() {
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.edit_profile_save_button :
+                        getActivity().finish();
+                        return true;
+                    case R.id.edit_profile_cancel_button :
+                        getActivity().finish();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 
     private void initiateImageLoader(){

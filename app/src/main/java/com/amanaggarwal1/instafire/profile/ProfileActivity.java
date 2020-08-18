@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,8 +34,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setupToolbar(){
         Toolbar toolbar = findViewById(R.id.profile_toolbar);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("username");
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -48,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
 }
