@@ -33,8 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setupToolbar(){
         Toolbar toolbar = findViewById(R.id.profile_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("username");
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("username");
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -51,9 +51,4 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_menu, menu);
-        return true;
-    }
 }
