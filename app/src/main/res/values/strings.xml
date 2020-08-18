@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">InstaFire</string>
     <string name="prompt_email">Email</string>
+    <string name="prompt_phone_number">Phone number</string>
     <string name="prompt_username">Username</string>
+    <string name="prompt_display_name">Display name</string>
+    <string name="prompt_description">Description</string>
+    <string name="prompt_website">Website</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_password_again">Confirm Password</string>
     <string name="prompt_msg">Type a message</string>
@@ -25,4 +29,5 @@
     <string name="sign_out_fragment">Sign out</string>
     <string name="options">Options</string>
     <string name="account_settings">Account Settings</string>
+    <string name="change_photo">Change Photo</string>
 </resources>

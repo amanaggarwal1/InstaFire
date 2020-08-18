@@ -21,6 +21,8 @@
             android:layout_height="match_parent"
             android:layout_below="@id/edit_profile_fragment_top_toolbar">
 
+            <include layout="@layout/snippet_center_edit_profile"/>
+
         </RelativeLayout>
 
     </RelativeLayout>
