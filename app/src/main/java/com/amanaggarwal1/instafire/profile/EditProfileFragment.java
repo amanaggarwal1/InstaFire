@@ -33,7 +33,6 @@ public class EditProfileFragment extends Fragment {
         toolbar = view.findViewById(R.id.profile_toolbar);
 
         setupToolbar();
-        initiateImageLoader();
         setProfilePhoto();
 
         return view;
@@ -58,14 +57,8 @@ public class EditProfileFragment extends Fragment {
         });
     }
 
-    private void initiateImageLoader(){
-        UniversalImageLoader loader = new UniversalImageLoader(getActivity());
-        ImageLoader.getInstance().init(loader.getConfig());
-    }
-
     private void setProfilePhoto() {
         String imageURL = "https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg";
         UniversalImageLoader.setImage(imageURL, profilePhoto, null, "");
-       // Glide.with(getActivity()).load(imageURL).into(profilePhoto);
-    }
+       }
 }
