@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/following_number_tv" />
 
         <TextView
-            android:id="@+id/edit_profile_tv"
+            android:id="@+id/profile_edit_profile_tv"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="50dp"
             android:layout_height="30dp"
