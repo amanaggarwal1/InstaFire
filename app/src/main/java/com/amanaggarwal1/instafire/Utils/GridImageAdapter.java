@@ -42,7 +42,6 @@ public class GridImageAdapter extends ArrayAdapter {
                 .load(imageURLs.get(position))
             .into((ImageView) convertView);
 
-
         return convertView;
     }
 }
