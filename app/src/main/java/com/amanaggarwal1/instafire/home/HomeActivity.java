@@ -10,7 +10,6 @@ import android.util.Log;
 import com.amanaggarwal1.instafire.R;
 import com.amanaggarwal1.instafire.Utils.BottomNavigationViewHelper;
 import com.amanaggarwal1.instafire.Utils.SectionsPagerAdapter;
-import com.amanaggarwal1.instafire.Utils.UniversalImageLoader;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view_bar);
         BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView, BottomNavigationViewHelper.ACTIVITY_NUMBER_HOME);
 
-        initiateImageLoader();
         setupViewPager();
     }
 
@@ -47,12 +45,6 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_app_logo);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_messages);
-    }
-
-
-    private void initiateImageLoader(){
-        UniversalImageLoader loader = new UniversalImageLoader(this);
-        ImageLoader.getInstance().init(loader.getConfig());
     }
 
 }
