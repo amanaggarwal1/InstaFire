@@ -16,8 +16,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/white"
-        >
+        android:textColorHint="@color/white">
 
         <AutoCompleteTextView
             android:id="@+id/login_email"
@@ -48,18 +47,16 @@
             android:hint="@string/prompt_password"
             android:imeActionId="@integer/login"
             android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            />
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login_sign_in_button"
         style="?android:textAppearanceMedium"
-        android:background="@drawable/accent_round_button"
-        android:textColor="@drawable/accent_round_button_text"
+        android:background="@drawable/white_round_button"
+        android:textColor="@drawable/white_round_button_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -67,16 +64,16 @@
         android:text="@string/action_sign_in_short"
         android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/login_register_button"
-        style="?android:textAppearanceMedium"
-        android:background="@drawable/white_round_button"
-        android:textColor="@drawable/white_round_button_text"
-        android:onClick="registerNewUser"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="No account yet? Create one"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="@string/action_register"
-        android:textStyle="bold"/>
+        android:textColor="@drawable/link_text"
+        android:onClick="registerNewUser"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
+
 
 </LinearLayout>
