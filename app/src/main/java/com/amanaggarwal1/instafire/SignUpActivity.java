@@ -3,6 +3,7 @@ package com.amanaggarwal1.instafire;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,14 +15,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amanaggarwal1.instafire.home.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import static android.text.TextUtils.isEmpty;
 
 public class SignUpActivity extends AppCompatActivity {
+    private static final String TAG = "SignUpActivity";
 
     private AutoCompleteTextView mEmailView;
     private AutoCompleteTextView mUsernameView;
@@ -114,7 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-           // createFirebaseUser();
+            createFirebaseUser(email, password);
 
         }
     }
@@ -129,4 +133,49 @@ public class SignUpActivity extends AppCompatActivity {
         return password.equals(confirmPassword) && password.length() >= 6;
     }
 
+    private void createFirebaseUser(final String email, final String password){
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d(getString(R.string.logcat), "Create User onComplete : " + task.isSuccessful());
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                    loginAfterRegistration(email, password);
+                }else{
+                    Log.d(getString(R.string.logcat), "User registration failed" );
+                    showErrorDialog("Registration failed\nPlease try again later");
+                }
+            }
+        });
+    }
+
+    private void showErrorDialog(String message){
+        new AlertDialog.Builder(this)
+                .setTitle("Whoops")
+                .setMessage(message)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+    private void loginAfterRegistration(String email, String password){
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d(getString(R.string.logcat), "SignIn onComplete : " + task.isSuccessful());
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    finish();
+                    startActivity(intent);
+                }else{
+                    Log.d(getString(R.string.logcat), "Problem while signing in : " + task.getException().getMessage());
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    finish();
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 }

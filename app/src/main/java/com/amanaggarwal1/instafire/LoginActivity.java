@@ -41,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordET = findViewById(R.id.login_password);
 
         mAuth = FirebaseAuth.getInstance();
-        //if(mAuth.getCurrentUser() != null)
-          //  goToPostActivity();
 
         passwordET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -57,6 +55,15 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //if(currentUser != null)
+          //  goToPostActivity();
+    }
+
     public void signInExistingUser(View view){
 
         emailET.setError(null);
@@ -69,13 +76,17 @@ public class LoginActivity extends AppCompatActivity {
             emailET.setError(getString(R.string.error_field_required));
             emailET.requestFocus();
             return;
+        }else if(!isEmailValid(email)){
+            emailET.setError(getString(R.string.error_invalid_email));
+            emailET.requestFocus();
+            return;
         }
+
         if(isEmpty(password)){
             passwordET.setError(getString(R.string.error_field_required));
             passwordET.requestFocus();
             return;
         }
-
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -104,6 +115,11 @@ public class LoginActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
+    }
+
+    private boolean isEmailValid(String email) {
+        // You can add more checking logic here.
+        return email.contains("@");
     }
 
     private void goToPostActivity() {
