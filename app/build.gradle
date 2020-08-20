@@ -45,6 +45,4 @@ dependencies {
     //For circular image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    //For universal image loader
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

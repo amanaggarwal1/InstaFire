@@ -8,12 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
-import com.amanaggarwal1.instafire.R;
 import com.bumptech.glide.Glide;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class GridImageAdapter extends ArrayAdapter {
 

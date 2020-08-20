@@ -58,8 +58,8 @@
     <Button
         android:id="@+id/login_sign_in_button"
         style="?android:textAppearanceMedium"
-        android:background="@color/green"
-        android:textColor="@color/white"
+        android:background="@drawable/accent_round_button"
+        android:textColor="@drawable/accent_round_button_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -70,8 +70,8 @@
     <Button
         android:id="@+id/login_register_button"
         style="?android:textAppearanceMedium"
-        android:background="@color/white"
-        android:textColor="@color/green"
+        android:background="@drawable/white_round_button"
+        android:textColor="@drawable/white_round_button_text"
         android:onClick="registerNewUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

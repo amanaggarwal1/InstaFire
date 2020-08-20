@@ -12,8 +12,6 @@ import com.amanaggarwal1.instafire.Utils.BottomNavigationViewHelper;
 import com.amanaggarwal1.instafire.Utils.SectionsPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";

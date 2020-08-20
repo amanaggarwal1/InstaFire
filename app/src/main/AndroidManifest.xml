@@ -12,18 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.HomeActivity"/>
-        <activity android:name=".search.SearchActivity"/>
-        <activity android:name=".share.ShareActivity"/>
-        <activity android:name=".updates.UpdatesActivity"/>
-        <activity android:name=".profile.ProfileActivity"/>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".share.ShareActivity" />
+        <activity android:name=".updates.UpdatesActivity" />
+        <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PostsActivity" />
-        <activity android:name=".profile.AccountSettingsActivity"/>
-        <activity
-            android:name=".LoginActivity">
+        <activity android:name=".profile.AccountSettingsActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

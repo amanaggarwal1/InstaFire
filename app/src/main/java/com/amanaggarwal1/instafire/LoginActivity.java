@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordET = findViewById(R.id.login_password);
 
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() != null)
-            goToPostActivity();
+        //if(mAuth.getCurrentUser() != null)
+          //  goToPostActivity();
 
         passwordET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -67,10 +67,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if(isEmpty(email)){
             emailET.setError(getString(R.string.error_field_required));
+            emailET.requestFocus();
             return;
         }
         if(isEmpty(password)){
             passwordET.setError(getString(R.string.error_field_required));
+            passwordET.requestFocus();
             return;
         }
 
