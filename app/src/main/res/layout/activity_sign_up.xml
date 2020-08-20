@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         android:text="Already have an account"
         android:textColor="@drawable/link_text"
-        android:onClick="signIn"
+        android:onClick="goToLoginActivity"
         android:textSize="20sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="16dp"

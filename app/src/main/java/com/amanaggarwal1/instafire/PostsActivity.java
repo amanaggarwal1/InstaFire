@@ -100,8 +100,6 @@ public class PostsActivity extends AppCompatActivity {
 
                 List<Post> postList = value.toObjects(Post.class);
                 adapter.setPosts(postList);
-                for(Post post : postList){
-                    Log.d("LOGCAT", "to objects,  desc = " + post.description + " time = " + post.creationTimeMS + " url = " + post.imageUrl + " username = " + post.user.username + " age = " + post.user.age );                }
             }
         });
 

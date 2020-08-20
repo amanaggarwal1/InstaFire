@@ -14,6 +14,8 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up">Sign up</string>
     <string name="action_send">Send</string>
+
+    <string name="error_invalid_username">Username can contain only alphabets and a space</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">Password too short or does not match</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -22,12 +24,32 @@
         completions."
     </string>
     <string name="sample_message">Hello!</string>
+    
     <string name="logcat">LOGCAT</string>
     <string name="error_short_password">Password too short</string>
     <string name="error_invalid_passwords">Passwords don\'t match</string>
-    <string name="edit_profile_fragment">Edit profile</string>
-    <string name="sign_out_fragment">Sign out</string>
+    
     <string name="options">Options</string>
     <string name="account_settings">Account Settings</string>
     <string name="change_photo">Change Photo</string>
+    
+    
+    <!-- Fragment Names -->
+    <string name="edit_profile_fragment">Edit profile</string>
+    <string name="sign_out_fragment">Sign out</string>
+    
+    <!-- Firebase stuff -->
+    <string name="dbname_users">users</string>
+    <string name="db_description">description</string>
+    <string name="db_website">website</string>
+    <string name="db_display_name">display_name</string>
+    <string name="db_profile_photo">profile_photo</string>
+    <string name="db_posts">posts</string>
+    <string name="db_followers">followers</string>
+    <string name="db_following">following</string>
+    <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="db_email">email</string>
+    <string name="db_phone_number">phone_number</string>
+    <string name="db_user_id">user_id</string>
+    <string name="db_username">username</string>
 </resources>

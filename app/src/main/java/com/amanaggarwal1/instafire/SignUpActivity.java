@@ -15,12 +15,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amanaggarwal1.instafire.Utils.FirebaseMethods;
+import com.amanaggarwal1.instafire.Utils.StringManipulation;
 import com.amanaggarwal1.instafire.home.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -32,6 +39,9 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private EditText mConfirmPasswordView;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseMethods firebaseMethods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +52,11 @@ public class SignUpActivity extends AppCompatActivity {
         mPasswordView = findViewById(R.id.register_password);
         mConfirmPasswordView = findViewById(R.id.register_confirm_password);
         mUsernameView = findViewById(R.id.register_username);
+
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
+        firebaseMethods = new FirebaseMethods();
 
         // Keyboard sign in action
         mConfirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -61,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         attemptRegistration();
     }
 
-    public void signIn(View view){
+    public void goToLoginActivity(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
@@ -87,6 +101,10 @@ public class SignUpActivity extends AppCompatActivity {
         // Check for a valid username, if the user entered one.
         if(isEmpty(username)){
             mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
+            cancel = true;
+        }else if(!isUsernameValid(username)){
+            mUsernameView.setError(getString(R.string.error_invalid_username));
             focusView = mUsernameView;
             cancel = true;
         }
@@ -123,6 +141,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isUsernameValid(String username) {
+        return StringManipulation.isAlpha(username);
+    }
+
     private boolean isEmailValid(String email) {
         // You can add more checking logic here.
         return email.contains("@");
@@ -140,6 +162,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.d(getString(R.string.logcat), "Create User onComplete : " + task.isSuccessful());
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                    addUserToDatabase();
                     loginAfterRegistration(email, password);
                 }else{
                     Log.d(getString(R.string.logcat), "User registration failed" );
@@ -149,6 +172,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+
     private void showErrorDialog(String message){
         new AlertDialog.Builder(this)
                 .setTitle("Whoops")
@@ -156,6 +180,26 @@ public class SignUpActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
+    }
+
+    private void addUserToDatabase() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            String username = mUsernameView.getText().toString();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(firebaseMethods.ifUsernameExists(username, snapshot)){
+                    String append = myRef.push().getKey().substring(4,11);
+                    Log.d(TAG, "onDataChange: username already exists, so appending " + append + " to username");
+                    username = username + "_" + append;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void loginAfterRegistration(String email, String password){
