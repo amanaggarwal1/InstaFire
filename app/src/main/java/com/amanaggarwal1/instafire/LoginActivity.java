@@ -26,7 +26,7 @@ import java.util.Objects;
 import static android.text.TextUtils.isEmpty;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private static final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private EditText emailET;
     private EditText passwordET;
@@ -60,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //if(currentUser != null)
-          //  goToPostActivity();
+        if(currentUser != null)
+            goToPostActivity();
     }
 
     public void signInExistingUser(View view){
@@ -96,9 +96,19 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             //Sign in successful
-                            Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            goToPostActivity();
+
+                            assert user != null;
+                            if(user.isEmailVerified()){
+                                Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "onComplete: success. email is verified");
+                                goToPostActivity();
+                            }else{
+                                Log.d(TAG, "onComplete: failure. email is not verified yet");
+                                showErrorDialog("Your email is not verified yet. Please check your mailbox");
+                                mAuth.signOut();
+                            }
+
                         }else{
                             String error = Objects.requireNonNull(task.getException()).getMessage();
                             showErrorDialog(error);

@@ -190,7 +190,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String username = firebaseMethods.generateUsername(displayName, snapshot);
                 firebaseMethods.addNewUser(username, displayName, mEmailView.getText().toString());
-
+                firebaseMethods.sendVerificationEmail();
                 Log.d(TAG, "onDataChange: added new user, waiting for confirmation");
             }
 
