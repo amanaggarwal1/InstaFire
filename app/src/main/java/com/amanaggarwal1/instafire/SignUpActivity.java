@@ -56,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
-        firebaseMethods = new FirebaseMethods();
 
         // Keyboard sign in action
         mConfirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -163,7 +162,6 @@ public class SignUpActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
                     addUserToDatabase();
-                    loginAfterRegistration(email, password);
                 }else{
                     Log.d(getString(R.string.logcat), "User registration failed" );
                     showErrorDialog("Registration failed\nPlease try again later");
@@ -183,16 +181,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void addUserToDatabase() {
+        firebaseMethods = new FirebaseMethods(getApplicationContext());
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            String username = mUsernameView.getText().toString();
+            String displayName =  StringManipulation.removeSpaces(mUsernameView.getText().toString());
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(firebaseMethods.ifUsernameExists(username, snapshot)){
-                    String append = myRef.push().getKey().substring(4,11);
-                    Log.d(TAG, "onDataChange: username already exists, so appending " + append + " to username");
-                    username = username + "_" + append;
-                }
+                String username = firebaseMethods.generateUsername(displayName, snapshot);
+                firebaseMethods.addNewUser(username, displayName, mEmailView.getText().toString());
 
+                Log.d(TAG, "onDataChange: added new user, waiting for confirmation");
             }
 
             @Override
@@ -202,24 +201,24 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void loginAfterRegistration(String email, String password){
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d(getString(R.string.logcat), "SignIn onComplete : " + task.isSuccessful());
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    finish();
-                    startActivity(intent);
-                }else{
-                    Log.d(getString(R.string.logcat), "Problem while signing in : " + task.getException().getMessage());
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    finish();
-                    startActivity(intent);
-                }
-            }
-        });
-    }
+//    private void loginAfterRegistration(String email, String password){
+//
+//        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                Log.d(getString(R.string.logcat), "SignIn onComplete : " + task.isSuccessful());
+//                if(task.isSuccessful()){
+//                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }else{
+//                    Log.d(getString(R.string.logcat), "Problem while signing in : " + task.getException().getMessage());
+//                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                    finish();
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//    }
 }

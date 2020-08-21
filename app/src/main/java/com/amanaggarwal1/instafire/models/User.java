@@ -8,20 +8,18 @@ import com.google.firebase.firestore.PropertyName;
 public class User {
     public String username;
     public String email;
-    @PropertyName("phone_number")
-    public long phoneNumber;
-    @PropertyName("user_id")
-    public String userId;
+    public long phone_number;
+    public String user_Id;
 
     public User(){
 
     }
 
-    public User(String username, String email, long phoneNumber, String userId) {
+    public User(String username, String email, long phone_number, String user_Id) {
         this.username = username;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.userId = userId;
+        this.phone_number = phone_number;
+        this.user_Id = user_Id;
     }
 
     @Override
@@ -29,8 +27,8 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", userId='" + userId + '\'' +
+                ", phoneNumber=" + phone_number +
+                ", userId='" + user_Id + '\'' +
                 '}';
     }
 
@@ -50,19 +48,19 @@ public class User {
         this.email = email;
     }
 
-    public long getPhoneNumber() {
-        return phoneNumber;
+    public long getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone_number(long phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUser_Id() {
+        return user_Id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser_Id(String user_Id) {
+        this.user_Id = user_Id;
     }
 }
