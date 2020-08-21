@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <TextView
+        android:id="@+id/sign_out_heading_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="40sp"
+        android:text="SIGN OUT"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    <TextView
+        android:id="@+id/sign_out_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/sign_out_heading_tv"
         android:layout_centerHorizontal="true"
-        android:layout_marginVertical="40dp"
-        android:text="Sign out Fragment"
-        android:textSize="20sp" />
+        android:layout_marginVertical="10dp"
+        android:text="Are you sure you wan to sign out?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/sign_out_button"
+        style="?android:textAppearanceMedium"
+        android:background="@drawable/white_round_button"
+        android:textColor="@drawable/white_round_button_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="20dp"
+        android:onClick="signOutExistingUser"
+        android:text="YES, TAKE ME OUT"
+        android:textStyle="bold"/>
+
+</LinearLayout>
