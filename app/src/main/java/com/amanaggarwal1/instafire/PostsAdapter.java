@@ -1,6 +1,7 @@
 package com.amanaggarwal1.instafire;
 
 import android.app.Activity;
+import android.os.Build;
 import android.text.format.DateUtils;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amanaggarwal1.instafire.models.Post;
@@ -27,6 +29,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public TextView txtHeader, txtRelativeTime, txtDescription;
         public ImageView imageView;
 
+        @RequiresApi(api = Build.VERSION_CODES.R)
         public ViewHolder(View v) {
             super(v);
             txtHeader = v.findViewById(R.id.postOwnerTV);
@@ -63,7 +66,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Post post = posts.get(position);
-        holder.txtHeader.setText(post.user.username);
+        //holder.txtHeader.setText(post.user.username);
         holder.txtRelativeTime.setText(DateUtils.getRelativeTimeSpanString(post.creationTimeMS));
         Glide.with(activity).load(post.imageUrl).into(holder.imageView);
         holder.txtDescription.setText(post.description);

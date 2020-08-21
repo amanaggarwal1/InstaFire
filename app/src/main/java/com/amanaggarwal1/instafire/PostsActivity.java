@@ -55,7 +55,7 @@ public class PostsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
          if(item.getItemId() == R.id.menu_profile){
              Intent intent = new Intent(this, ProfileActivity.class);
-             intent.putExtra("USERNAME", signedInUser.username);
+            // intent.putExtra("USERNAME", signedInUser.username);
              startActivity(intent);
          }
         return super.onOptionsItemSelected(item);
@@ -130,7 +130,7 @@ public class PostsActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         signedInUser = documentSnapshot.toObject(User.class);
-                        Log.d("LOGCAT", "user signed in = " + signedInUser.username);
+                        //Log.d("LOGCAT", "user signed in = " + signedInUser.username);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

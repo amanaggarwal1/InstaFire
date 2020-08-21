@@ -6,10 +6,10 @@ import com.google.firebase.firestore.PropertyName;
 
 
 public class User {
-    public String username;
-    public String email;
-    public long phone_number;
-    public String user_Id;
+    private String username;
+    private String email;
+    private long phone_number;
+    private String user_Id;
 
     public User(){
 

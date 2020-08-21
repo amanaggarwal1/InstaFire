@@ -2,14 +2,14 @@ package com.amanaggarwal1.instafire.models;
 
 
 public class UserAccountSettings {
-    public String username;
-    public String display_name;
-    public String description;
-    public String website;
-    public String profile_photo;
-    public long posts;
-    public long followers;
-    public long following;
+    private String username;
+    private String display_name;
+    private String description;
+    private String website;
+    private String profile_photo;
+    private long posts;
+    private long followers;
+    private long following;
 
     public UserAccountSettings(){ }
 

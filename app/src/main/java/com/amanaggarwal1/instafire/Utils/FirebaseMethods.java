@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.amanaggarwal1.instafire.R;
 import com.amanaggarwal1.instafire.models.User;
 import com.amanaggarwal1.instafire.models.UserAccountSettings;
+import com.amanaggarwal1.instafire.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,6 +75,18 @@ public class FirebaseMethods {
                         }
                     }
                 });
+    }
+
+    public UserSettings getUserSettings(DataSnapshot dataSnapshot){
+        Log.d(TAG, "getUserAccountSettings: retrieving user settings from firebase");
+
+        User user =  dataSnapshot.child(context.getString(R.string.dbname_users)).child(userID).getValue(User.class);
+        UserAccountSettings userAccountSettings =  dataSnapshot.child(context.getString(R.string.dbname_user_account_settings)).child(userID).getValue(UserAccountSettings.class);
+
+        Log.d(TAG, "getUserSettings: user : " + user.toString());
+        Log.d(TAG, "getUserSettings: user account settings : " + userAccountSettings.toString());
+
+        return new UserSettings(user, userAccountSettings);
     }
 
     public String generateUsername(String username, DataSnapshot snapshot){
