@@ -63,12 +63,22 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         defineWidgets(view);
 
+        editProfileTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                intent.putExtra("calling_method", "editProfile");
+                startActivity(intent);
+            }
+        });
+
         BottomNavigationViewHelper.enableNavigation(getActivity(), bottomNavigationView, BottomNavigationViewHelper.ACTIVITY_NUMBER_PROFILE);
         setupToolbar();
         fetchDataFromDatabase();
 
         return view;
     }
+
 
     private void defineWidgets(View view) {
 

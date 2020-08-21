@@ -40,11 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: ");
 
         init();
-//
-//
-//        BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView, BottomNavigationViewHelper.ACTIVITY_NUMBER_PROFILE);
-//        setupProfilePhoto();
-//        setupToolbar();
+
 //        tempGridImages();
     }
 
@@ -59,27 +55,6 @@ public class ProfileActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-//    private void setupProfilePhoto() {
-//        progressBar.setVisibility(View.VISIBLE);
-//        String imageURL = "https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg";
-//        //UniversalImageLoader.setImage(imageURL, profilePhoto, progressBar, "");
-//        Glide.with(this)
-//                .load(imageURL)
-//                .listener(new RequestListener<Drawable>() {
-//                    @Override
-//                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                        progressBar.setVisibility(View.GONE);
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//                        progressBar.setVisibility(View.GONE);
-//                        return false;
-//                    }
-//                })
-//                .into(profilePhoto);
-//    }
 //
 //    private void tempGridImages(){
 //        ArrayList<String> images = new ArrayList<>();

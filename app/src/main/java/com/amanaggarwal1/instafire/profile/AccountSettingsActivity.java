@@ -1,5 +1,6 @@
 package com.amanaggarwal1.instafire.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +46,16 @@ public class AccountSettingsActivity extends AppCompatActivity {
         });
         setupSettingsOptionsList();
         setupFragments();
+        getCallingIntent();
 
+    }
+
+    private void getCallingIntent() {
+        Intent intent  = getIntent();
+        if(intent.hasExtra("calling_method")){
+            Log.d(TAG, "getCallingIntent: received call from " + intent.getStringExtra("calling_method"));
+            setViewPager(adapter.getFragmentNumber(getString(R.string.edit_profile_fragment)));
+        }
     }
 
     private void setupFragments(){
