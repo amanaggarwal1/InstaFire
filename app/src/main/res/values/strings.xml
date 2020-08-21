@@ -37,6 +37,7 @@
     <!-- Fragment Names -->
     <string name="edit_profile_fragment">Edit profile</string>
     <string name="sign_out_fragment">Sign out</string>
+    <string name="profile_fragment">Profile</string>
     
     <!-- Firebase stuff -->
     <string name="dbname_users">users</string>
