@@ -31,10 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
 
-    private BottomNavigationView bottomNavigationView;
-    private CircleImageView profilePhoto;
-    private ProgressBar progressBar;
-    private GridView gridView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,10 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: ");
 
         init();
-//        bottomNavigationView = findViewById(R.id.bottom_nav_view_bar);
-//        profilePhoto = findViewById(R.id.profile_photo);
-//        gridView = findViewById(R.id.profile_grid_view);
-//        progressBar = findViewById(R.id.profile_progress_bar);
+//
 //
 //        BottomNavigationViewHelper.enableNavigation(this, bottomNavigationView, BottomNavigationViewHelper.ACTIVITY_NUMBER_PROFILE);
 //        setupProfilePhoto();
@@ -138,21 +132,6 @@ public class ProfileActivity extends AppCompatActivity {
 //        gridView.setAdapter(adapter);
 //    }
 //
-//    private void setupToolbar(){
-//        Toolbar toolbar = findViewById(R.id.profile_toolbar);
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                switch (item.getItemId()){
-//                    case R.id.profile_menu :
-//                        Intent intent = new Intent(getApplicationContext(), AccountSettingsActivity.class);
-//                        startActivity(intent);
-//                        return true;
-//                    default:
-//                        return false;
-//                }
-//            }
-//        });
-//    }
+
 
 }

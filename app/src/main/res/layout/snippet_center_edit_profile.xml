@@ -64,7 +64,7 @@
                         >
 
                         <AutoCompleteTextView
-                            android:id="@+id/profile_username"
+                            android:id="@+id/edit_profile_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_username"
@@ -102,7 +102,7 @@
                         >
 
                         <AutoCompleteTextView
-                            android:id="@+id/profile_display_name"
+                            android:id="@+id/edit_profile_display_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_display_name"
@@ -140,7 +140,7 @@
                         >
 
                         <AutoCompleteTextView
-                            android:id="@+id/profile_description"
+                            android:id="@+id/edit_profile_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_description"
@@ -176,7 +176,7 @@
                         >
 
                         <AutoCompleteTextView
-                            android:id="@+id/profile_website"
+                            android:id="@+id/edit_profile_website"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_website"
@@ -235,7 +235,7 @@
                         >
 
                         <AutoCompleteTextView
-                            android:id="@+id/profile_email_address"
+                            android:id="@+id/edit_profile_email_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_email"
@@ -273,7 +273,7 @@
                         >
 
                         <AutoCompleteTextView
-                            android:id="@+id/profile_phone_number"
+                            android:id="@+id/edit_profile_phone_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_phone_number"

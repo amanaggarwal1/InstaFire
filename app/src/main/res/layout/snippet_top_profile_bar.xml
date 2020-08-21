@@ -13,6 +13,7 @@
             app:menu="@menu/profile_menu">
 
             <TextView
+                android:id="@+id/profile_toolbar_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username"
