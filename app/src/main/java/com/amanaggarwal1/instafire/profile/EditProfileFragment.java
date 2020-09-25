@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.amanaggarwal1.instafire.R;
+import com.amanaggarwal1.instafire.models.UserSettings;
 import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -19,19 +22,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfileFragment extends Fragment {
 
     private static final String TAG = "EditProfileFragment";
-    private CircleImageView profilePhoto;
     private androidx.appcompat.widget.Toolbar toolbar;
+
+
+
+    //widgets
+    private CircleImageView profilePhoto;
+    private TextView changeProfilePhotoTV;
+    private EditText usernameET, displayNameET, descriptionET, websiteET;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-        profilePhoto = view.findViewById(R.id.profile_photo);
-        toolbar = view.findViewById(R.id.profile_toolbar);
 
-        setupToolbar();
-        setProfilePhoto();
-
+        setUpWidgets(view);
         return view;
 
     }
@@ -52,6 +57,21 @@ public class EditProfileFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void setUpWidgets(View view){
+        toolbar = view.findViewById(R.id.profile_toolbar);
+        profilePhoto = view.findViewById(R.id.profile_photo);
+        changeProfilePhotoTV = view.findViewById(R.id.change_profile_photo_tv);
+        usernameET = view.findViewById(R.id.edit_profile_username);
+        displayNameET = view.findViewById(R.id.edit_profile_display_name);
+        descriptionET = view.findViewById(R.id.edit_profile_description);
+        websiteET = view.findViewById(R.id.edit_profile_website);
+
+        setupToolbar();
+        setProfilePhoto();
+
+
     }
 
     private void setProfilePhoto() {

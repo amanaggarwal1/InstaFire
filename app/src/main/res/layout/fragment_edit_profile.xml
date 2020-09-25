@@ -3,27 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <RelativeLayout
+        android:id="@+id/edit_profile_fragment_top_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/snippet_edit_profile_top_toolbar"/>
+
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/edit_profile_fragment_top_toolbar">
 
-        <RelativeLayout
-            android:id="@+id/edit_profile_fragment_top_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include layout="@layout/snippet_edit_profile_top_toolbar"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/edit_profile_fragment_top_toolbar">
-
-            <include layout="@layout/snippet_center_edit_profile"/>
-
-        </RelativeLayout>
+        <include layout="@layout/snippet_center_edit_profile"/>
 
     </RelativeLayout>
 

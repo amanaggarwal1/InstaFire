@@ -1,6 +1,5 @@
 package com.amanaggarwal1.instafire.profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -35,8 +34,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.zip.Inflater;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -125,7 +122,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 settings =  firebaseMethods.getUserSettings(snapshot);
-                Log.d(TAG, "onDataChange: settings : " + settings.toString());
+                Log.d(TAG, "onDataChange: settings : data updated" + settings.toString());
                 updateUI();
             }
 
